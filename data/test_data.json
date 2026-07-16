@@ -1,0 +1,11 @@
+{
+  "valid_search_keywords": ["Dress", "Jeans", "Top", "Saree", "Shirt"],
+  "invalid_search_keywords": ["zzzznonexistentproduct", "###invalid###"],
+  "test_users": [
+    {
+      "name": "QA Automation",
+      "email": "qa.automation.test@example.com",
+      "password": "Test@1234"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Pytest cache and reports
+.pytest_cache/
+reports/
+*.html
+
+# IDE configuration
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Coverage reports
+.coverage
+htmlcov/
+.coverage.*
+
+# Playwright browser binaries (don't need to commit)
+ms-playwright/
+
