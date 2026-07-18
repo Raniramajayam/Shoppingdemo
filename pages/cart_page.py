@@ -8,7 +8,8 @@ class CartPage(BasePage):
     PRODUCT_QTY_CELL = "td.cart_quantity button"
     PRODUCT_TOTAL_CELL = "td.cart_total p"
     DELETE_BUTTON = "td.cart_delete a"
-    PROCEED_TO_CHECKOUT = "a:has-text('Proceed To Checkout')"
+    # Prefer an explicit href for the checkout action to avoid ambiguous matches
+    PROCEED_TO_CHECKOUT = "a[href='/checkout']"
     EMPTY_CART_MESSAGE = "#empty_cart"
 
     def get_item_count(self) -> int:

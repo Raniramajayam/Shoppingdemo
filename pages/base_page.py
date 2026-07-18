@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, expect
+from utils.config import Config
 
 
 class BasePage:
@@ -17,13 +18,32 @@ class BasePage:
         self.page.goto(url)
 
     def click(self, locator: str):
-        self.page.locator(locator).click()
+        """Click the first visible locator matching `locator`.
+
+        Use a wait to ensure the element is visible before clicking. This
+        avoids Playwright's strict-mode errors when multiple elements match
+        the selector and prevents flakiness in CI where elements may take
+        longer to appear.
+        """
+        loc = self.page.locator(locator).first
+        # Wait until visible with the configured timeout
+        expect(loc).to_be_visible(timeout=Config.DEFAULT_TIMEOUT)
+        loc.click()
 
     def fill(self, locator: str, text: str):
-        self.page.locator(locator).fill(text)
+        """Fill the first visible input matching `locator`.
+
+        Waits until visible to reduce flakiness on CI runners where elements
+        may be present but not yet interactive.
+        """
+        loc = self.page.locator(locator).first
+        expect(loc).to_be_visible(timeout=Config.DEFAULT_TIMEOUT)
+        loc.fill(text)
 
     def get_text(self, locator: str) -> str:
-        return self.page.locator(locator).inner_text()
+        loc = self.page.locator(locator).first
+        expect(loc).to_be_visible(timeout=Config.DEFAULT_TIMEOUT)
+        return loc.inner_text()
 
     def is_visible(self, locator: str) -> bool:
         return self.page.locator(locator).is_visible()

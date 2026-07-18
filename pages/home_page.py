@@ -7,7 +7,8 @@ class HomePage(BasePage):
     PRODUCTS_LINK = "a[href='/products']"
     SEARCH_INPUT = "#search_product"
     SEARCH_BUTTON = "#submit_search"
-    CART_LINK = "a:has-text('Cart')"
+    # Use the explicit cart link href to avoid matching multiple 'Cart' labels
+    CART_LINK = "a[href='/view_cart']"
     SIGNUP_LOGIN_LINK = "a[href='/login']"
     LOGGED_IN_INDICATOR = "a:has-text('Logged in as')"
 
